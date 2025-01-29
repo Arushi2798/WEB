@@ -1,5 +1,5 @@
-# ROSALIND Problem Solution
+# Frontend Practise
 <br>
-This repo contains my solutions for problems given on ROSALIND website.
+This repo contains my web pages for the python projects created in python project repository.
 <br>
-The programming language used is Python
+The programming language used is html, css, javascript
