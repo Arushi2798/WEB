@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<html>
+    <head >
+        <script type="">
+
+            import random
+            var res="y"
+            while res.lower() == "y" :
+            user= int(input("what will you choose? \n 0-> rock\t 1-> paper \t 2->scissor \n"))
+            if user>2:
+                res=input("INVALID INPUT!!!!.\n wanna try  again with correct input values? ")
+                com= random.randint(0,2)
+                if user == com:
+                    res=input("it's a TIE.\n wanna try  again? ")
+                elif com==0:
+                    if user==1:
+                        res=input("YOU WIN.\n wanna try  again? ")
+                    elif user ==2:
+                        res=input("YOU LOOSE.\n wanna try  again? ")
+                elif com==1:
+                    if user==0:
+                        res=input("YOU LOOSE.\n wanna try  again? ")
+                    elif user ==2:
+                        res=input("YOU WIN.\n wanna try  again? ")
+                elif com==2:
+                    if user==0:
+                        res=input("YOU WIN.\n wanna try  again? ")
+                    elif user ==1:
+                        res=input("YOU LOOSE.\n wanna try  again? ")
+        </script>
+        <title>
+            Rock Paper Scissor
+        </title>
+    </head>
+    <body>
+        <h1>
+            Welcome to ROCK-PAPER-SCISSOR GAME Folks!!
+        </h1>
+        <p>
+            Frankly we think it's just a game of luck when you play this with your friend. but on a computer it's a game of random chance, <em>literaly</em>.
+            so buckle up and let's test your luck against a computer. 
+        </p>
+        <h3>Rules:</h3>
+        <li>Rock wins against Scissor,</li>
+        <li>Scissor wins against Paper,</li>
+        <li>Paper wins aginst Rock.</li>
+
+    </body>
+</html>
