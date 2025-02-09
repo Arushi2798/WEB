@@ -5,30 +5,37 @@
     <head >
         <script type="">
 
-            import random
-            var res="y"
-            while res.lower() == "y" :
-            user= int(input("what will you choose? \n 0-> rock\t 1-> paper \t 2->scissor \n"))
-            if user>2:
-                res=input("INVALID INPUT!!!!.\n wanna try  again with correct input values? ")
-                com= random.randint(0,2)
-                if user == com:
-                    res=input("it's a TIE.\n wanna try  again? ")
-                elif com==0:
-                    if user==1:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                    elif user ==2:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
-                elif com==1:
-                    if user==0:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
-                    elif user ==2:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                elif com==2:
-                    if user==0:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                    elif user ==1:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
+            #Question Statement
+            """Creating A silent Auction Program: bidding is performed silently, where each other's bid is not known.
+            the highest bid wins."""
+
+
+            import os
+            print(" ******WELCOME TO THE GAME OF SILENT AUCTION PROGRAM******")
+
+            def result(NAME,BID):
+                win=max(BID)
+                win_id=BID.index(win)
+                winner=NAME[win_id]
+                return winner,win
+
+
+            more="yes"
+            NAME=[]
+            BID=[]
+            while more=="yes":
+                name=input("what's your name?:  ")
+                bid=int(input("what's your bid?:  "))
+                NAME.append(name)
+                BID.append(bid)
+                more=input("Is there any other bidders? TYPE 'yes' or 'no' \n").lower()
+                if more=="yes":
+                    os.system("cls")
+                else:
+                    winner=result(NAME,BID)
+                    os.system("cls")
+
+            print(f"the winner is {winner[0]} with the bid of {winner[1]} amount")
         </script>
         <title>
             Rock Paper Scissor

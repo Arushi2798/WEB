@@ -5,30 +5,57 @@
     <head >
         <script type="">
 
-            import random
-            var res="y"
-            while res.lower() == "y" :
-            user= int(input("what will you choose? \n 0-> rock\t 1-> paper \t 2->scissor \n"))
-            if user>2:
-                res=input("INVALID INPUT!!!!.\n wanna try  again with correct input values? ")
-                com= random.randint(0,2)
-                if user == com:
-                    res=input("it's a TIE.\n wanna try  again? ")
-                elif com==0:
-                    if user==1:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                    elif user ==2:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
-                elif com==1:
-                    if user==0:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
-                    elif user ==2:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                elif com==2:
-                    if user==0:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                    elif user ==1:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
+            #Question Statement
+            """Creating a CALCULATOR"""
+
+            from os import system
+
+            def calculation(num1,num2,op):
+                if op=="+":
+                    return num1+num2
+                if op=="-":
+                    return num1-num2   
+                if op=="*":
+                        return num1*num2    
+                if op=="/":
+                        return num1/num2    
+                
+
+            # num_1=int(input("Enter your 1st number: "))
+            # print("Operand List: \n+\n-\n*\n/")
+            # cal=input("Select an operand from the list above: ")
+            # num_2=int(input("Enter your next number: "))
+
+            # res=calculation(num_1,num_2,cal)
+            # print(res)
+
+            choice="n"
+            while choice:  
+                if choice=="n":
+                    num_1=int(input("Enter your 1st number: "))
+                    print("Operand List: \n+\n-\n*\n/")
+                    cal=input("Select an operand from the list given above: ")
+                    num_2=int(input("Enter your next number: "))
+
+                    res=calculation(num_1,num_2,cal)
+                    print(f'{num_1}{cal}{num_2}={res}')
+                    choice=input(f"Enter 'y' to continue calculation with {res} or 'n' to start new calculation or 'x' to exit: ")
+
+                elif choice=='y':
+                    num_1=res
+                    cal=input("Select an operand from the list given above: ")
+                    num_2=int(input("Enter your next number: "))
+                    res=calculation(num_1,num_2,cal)
+                    print(res)
+                    
+                    choice=input(f"Enter 'y' to continue calculation with {res} or 'n' to start new calculation or 'x' to exit: ")
+                elif choice=='x':
+                    print("exit calculator")
+                    break
+                else:
+                    print("something is wrong with your input")
+                    break
+
         </script>
         <title>
             Rock Paper Scissor

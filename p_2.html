@@ -4,31 +4,33 @@
 <html>
     <head >
         <script type="">
+                        #Question Statement
+            """Creating a password generator"""
 
             import random
-            var res="y"
-            while res.lower() == "y" :
-            user= int(input("what will you choose? \n 0-> rock\t 1-> paper \t 2->scissor \n"))
-            if user>2:
-                res=input("INVALID INPUT!!!!.\n wanna try  again with correct input values? ")
-                com= random.randint(0,2)
-                if user == com:
-                    res=input("it's a TIE.\n wanna try  again? ")
-                elif com==0:
-                    if user==1:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                    elif user ==2:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
-                elif com==1:
-                    if user==0:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
-                    elif user ==2:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                elif com==2:
-                    if user==0:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                    elif user ==1:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
+
+            print("WELCOME TO PASSWORD GENERATOR!")
+            letter=int(input("How many letters would you like in your password? \n "))
+            symbol=int(input("How many symbols would you like in your password? \n "))
+            number=int(input("How many numbers would you like in your password? \n "))
+
+            passw = ""
+            password=[]
+
+            for item in range(letter):
+                password.append(random.choice("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"))
+            for item in range(symbol):
+                password.append(random.choice('!@#$%^&*()~`-_{}|:<>?[]\;,./'))
+            for item in range(number):
+                password.append(random.randint(0,9))
+            # print(password)
+            random.shuffle(password)
+            for i in password:
+                passw += str(i)
+
+            print(passw)
+
+            
         </script>
         <title>
             Rock Paper Scissor
