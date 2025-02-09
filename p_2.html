@@ -4,18 +4,14 @@
 <html>
     <head >
         <script type="text/Javascript">
-                        #Question Statement
-            """Creating a password generator"""
-
             import random
 
-            print("WELCOME TO PASSWORD GENERATOR!")
-            letter=int(input("How many letters would you like in your password? \n "))
-            symbol=int(input("How many symbols would you like in your password? \n "))
-            number=int(input("How many numbers would you like in your password? \n "))
+            var letter=int(input("How many letters would you like in your password? \n "))
+            var symbol=int(input("How many symbols would you like in your password? \n "))
+            var number=int(input("How many numbers would you like in your password? \n "))
 
-            passw = ""
-            password=[]
+            var passw = ""
+            new password= new Array();
 
             for item in range(letter):
                 password.append(random.choice("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"))
@@ -38,7 +34,7 @@
     </head>
     <body>
         <h1>
-            Welcome to ROCK-PAPER-SCISSOR GAME Folks!!
+            WELCOME TO PASSWORD GENERATOR!!
         </h1>
         <p>
             Frankly we think it's just a game of luck when you play this with your friend. but on a computer it's a game of random chance, <em>literaly</em>.
