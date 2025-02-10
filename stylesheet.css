@@ -1,6 +1,28 @@
+body{
+    font-size: medium;
+    font-family: cursive;
+}
+
 #intro{
     font-family: fantasy;
 }
+
 .games{
     background-color: cadetblue;
+}
+
+h1{
+    font-size: 1.5em;
+    color: #444;
+    text-decoration: dashed;
+}
+
+p{
+    font-family: cursive;
+}
+
+em{
+    font-weight: 800;
+    font-style: italic;
+    font-size: 1.2em;
 }
