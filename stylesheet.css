@@ -8,7 +8,7 @@ body{
 }
 
 .games{
-    background-color: cadetblue;
+    background-color: #e6ccff;
 }
 
 h1{
@@ -35,3 +35,5 @@ em{
     border-color: azure;
     margin-right: 15em;
 }
+
+#all_the_best{}
