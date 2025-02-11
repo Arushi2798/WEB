@@ -26,3 +26,12 @@ em{
     font-style: italic;
     font-size: 1.2em;
 }
+
+.games{
+    padding: 1.2em;
+    border-radius: 1.3em;
+    border-style: double;
+    margin: 1.2em;
+    border-color: azure;
+
+}
