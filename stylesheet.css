@@ -24,7 +24,7 @@ em{
 }
 
 
-.games{
+span.games{
     background-color: #e6ccff;
     width: 200px;
     height: 200px;
@@ -34,6 +34,10 @@ em{
     border-style: double;
     margin: 1.2em;
     border-color: azure;
+}
+
+#wish{
+    color: #990066;
 }
 
 #all_the_best{
