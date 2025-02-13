@@ -27,13 +27,26 @@ em{
     font-size: 1.2em;
 }
 
-.games{
-    padding: 1.2em;
-    border-radius: 1.3em;
+div {
+    border: #111 10px;
+}
+
+span.games{
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    padding: 2em;
+    border-radius: 1.2em;
     border-style: double;
     margin: 1.2em;
     border-color: azure;
-    margin-right: 15em;
 }
 
-#all_the_best{}
+#all_the_best{
+    line-height: 1;
+    text-align:left;
+}
+img{
+    text-align: right;
+    width: 200px;
+}
