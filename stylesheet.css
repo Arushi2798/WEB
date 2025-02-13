@@ -31,7 +31,7 @@ div {
     border: #111 10px;
 }
 
-span.games{
+.games{
     width: 200px;
     height: 200px;
     line-height: 200px;
@@ -43,8 +43,9 @@ span.games{
 }
 
 #all_the_best{
-    line-height: 1;
+    line-height: 2;
     text-align:left;
+
 }
 img{
     text-align: right;
