@@ -7,10 +7,6 @@ body{
     font-family: fantasy;
 }
 
-.games{
-    background-color: #e6ccff;
-}
-
 h1{
     font-size: 1.5em;
     color: #444;
@@ -27,11 +23,9 @@ em{
     font-size: 1.2em;
 }
 
-div {
-    border: #111 10px;
-}
 
 .games{
+    background-color: #e6ccff;
     width: 200px;
     height: 200px;
     line-height: 200px;
@@ -50,4 +44,9 @@ div {
 img{
     text-align: right;
     width: 200px;
+}
+
+div{
+    border-top:#444 10px;
+    background-color: bisque;
 }
