@@ -9,7 +9,10 @@ body{
 
 #intro{
     font-family: fantasy;
+    text-align: center;
 }
+
+
 
 em#introduction{
     font-weight: 400px;
@@ -61,7 +64,10 @@ img{
     width: 200px;
 }
 
-div{
-    border-top:#444 10px;
+
+div #game{
+    padding: 10px;
+    margin: 10px;
+    border-width: 15px dashed rgba(47, 1, 47, 0.781) ;
     background-color: bisque;
 }
