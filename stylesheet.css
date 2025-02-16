@@ -1,6 +1,10 @@
 body{
     font-size: medium;
     font-family: cursive;
+    border:5px double #444;
+    margin: 10px;
+    padding: 10px;
+    
 }
 
 #intro{
