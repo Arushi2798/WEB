@@ -11,6 +11,13 @@ body{
     font-family: fantasy;
 }
 
+em#introduction{
+    font-weight: 400px;
+    font-size: larger;
+    color: chocolate;
+}
+
+
 h1{
     font-size: 1.5em;
     color: #444;
