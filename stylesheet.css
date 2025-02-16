@@ -10,43 +10,27 @@ body{
 #intro{
     font-family: fantasy;
     text-align: center;
-}
-
-
-
-em#introduction{
-    font-weight: 400px;
-    font-size: larger;
-    color: chocolate;
-}
-
-
-h1{
     font-size: 1.5em;
     color: #444;
     text-decoration: dashed;
 }
 
-p{
-    font-family: cursive;
-}
-
 em{
-    font-weight: 800;
+    font-weight: 400px;
+    font-size: larger;
+    color: chocolate;
     font-style: italic;
-    font-size: 1.2em;
 }
 
-
-span.games{
+.games{
+    padding: 2em;
+    margin: 1.2em;
     background-color: #e6ccff;
     width: 200px;
     height: 200px;
     line-height: 200px;
-    padding: 2em;
     border-radius: 1.2em;
     border-style: double;
-    margin: 1.2em;
     border-color: azure;
 }
 
@@ -68,6 +52,6 @@ img{
 div #game{
     padding: 10px;
     margin: 10px;
-    border-width: 15px dashed rgba(47, 1, 47, 0.781) ;
+    border: 15px dashed rgba(47, 1, 47, 0.781) ;
     background-color: bisque;
 }
