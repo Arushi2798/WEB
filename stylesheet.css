@@ -1,4 +1,5 @@
 body{
+    background-color: azure;
     font-size: medium;
     font-family: cursive;
     border:5px double #444;
@@ -25,7 +26,7 @@ em{
 .games{
     padding: 2em;
     margin: 1.2em;
-    background-color: #e6ccff;
+    background-color: #b095df;
     width: 200px;
     height: 200px;
     line-height: 200px;
@@ -36,6 +37,7 @@ em{
 
 #wish{
     color: #990066;
+    float: right;
 }
 
 #all_the_best{
@@ -46,12 +48,14 @@ em{
 img{
     text-align: right;
     width: 200px;
+    float: right;
+    background-color: transparent;
 }
 
 
-div #game{
+div{
     padding: 10px;
     margin: 10px;
-    border: 15px dashed rgba(47, 1, 47, 0.781) ;
-    background-color: bisque;
+    border: 2px solid gray ;
+    background-color: rgb(240, 192, 240);
 }
