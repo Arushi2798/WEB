@@ -8,12 +8,12 @@ body{
     
 }
 
-#intro{
+h1{
     font-family: fantasy;
+    text-decoration: underline dotted #333;
     text-align: center;
     font-size: 1.5em;
-    color: #444;
-    text-decoration: dashed;
+    color: #333;
 }
 
 em{
@@ -26,7 +26,7 @@ em{
 .games{
     padding: 2em;
     margin: 1.2em;
-    background-color: #b095df;
+    background-color: #c4a4fa;
     width: 200px;
     height: 200px;
     line-height: 200px;
@@ -53,9 +53,10 @@ img{
 }
 
 
-div{
+div#projects{
+    width: 94%;
     padding: 10px;
     margin: 10px;
-    border: 2px solid gray ;
-    background-color: rgb(240, 192, 240);
+    border: 3px dashed #22b3b3 ;
+    background-color: rgb(243, 212, 243);
 }
