@@ -24,15 +24,15 @@ em{
 }
 
 .games{
-    padding: 2em;
+    padding: 60px 30px;
     margin: 1.2em;
-    background-color: #c4a4fa;
+    background-color: #c4b3e0;
     width: 200px;
     height: 200px;
     line-height: 200px;
-    border-radius: 1.2em;
-    border-style: double;
-    border-color: azure;
+    border-radius: 1.1em;
+    border-style: solid;
+    border-color: #22b3b3;
 }
 
 #wish{
@@ -58,5 +58,5 @@ div#projects{
     padding: 10px;
     margin: 10px;
     border: 3px dashed #22b3b3 ;
-    background-color: rgb(243, 212, 243);
+    background-color: rgb(247, 236, 247);
 }
