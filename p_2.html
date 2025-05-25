@@ -1,51 +1,112 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Password Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      text-align: center;
+    }
 
-<html>
-    <head >
-        <link type="text/css" rel="stylesheet" href="stylesheet.css">
-        <script type="text/Javascript">
-            import random
+    h1 {
+      color: #4CAF50;
+    }
 
-            var letter=int(input("How many letters would you like in your password? \n "))
-            var symbol=int(input("How many symbols would you like in your password? \n "))
-            var number=int(input("How many numbers would you like in your password? \n "))
+    label, input {
+      font-size: 18px;
+    }
 
-            var passw = ""
-            new password= new Array();
+    input {
+      width: 50px;
+      text-align: center;
+      margin: 5px;
+    }
 
-            for item in range(letter):
-                password.append(random.choice("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"))
-            for item in range(symbol):
-                password.append(random.choice('!@#$%^&*()~`-_{}|:<>?[]\;,./'))
-            for item in range(number):
-                password.append(random.randint(0,9))
-            # print(password)
-            random.shuffle(password)
-            for i in password:
-                passw += str(i)
+    button {
+      margin-top: 15px;
+      font-size: 18px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
 
-            print(passw)
+    #result {
+      font-size: 22px;
+      margin-top: 20px;
+      word-break: break-word;
+      color: green;
+    }
 
-            
-        </script>
-        <title>
-            PASSWORD GENERATOR
-        </title>
-    </head>
-    <body>
-        <h1 id="intro">
-            WELCOME TO PASSWORD GENERATOR!!
-        </h1>
-        <p>
-            Looks like you need help with creating new password. No worries. we&apos;ll help you create password in a minute.<br>
-            so i&apos;ll need you to tell me how many letters , sybol and numbers you want in your password.<br>
-            let&apos;s start with letters<br>
-            now symbols<br>
-            and lastly is numbers<br>
-            and your password is
-        </p>
-        
+    p {
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+  </style>
+</head>
+<body>
 
-    </body>
+  <!-- Intro Section -->
+  <h1 id="intro">WELCOME TO PASSWORD GENERATOR!!</h1>
+  <p>
+    Looks like you need help with creating a new password. No worries — we'll help you create a password in a minute.<br>
+    So I'll need you to tell me how many letters, symbols, and numbers you want in your password.<br>
+    Let's start with letters,<br>
+    now symbols,<br>
+    and lastly numbers.<br>
+    And your password is...
+  </p>
+
+  <!-- Input Section -->
+  <label>Letters:</label>
+  <input type="number" id="letters" min="0" value="6"><br>
+
+  <label>Symbols:</label>
+  <input type="number" id="symbols" min="0" value="2"><br>
+
+  <label>Numbers:</label>
+  <input type="number" id="numbers" min="0" value="2"><br>
+
+  <button onclick="generatePassword()">Generate Password</button>
+
+  <div id="result"></div>
+
+  <script>
+    function getRandomItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function generatePassword() {
+      const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const symbols = "!@#$%^&*()~`-_{}|:<>?[]\\;,./";
+      const numbers = "0123456789";
+
+      const letterCount = parseInt(document.getElementById("letters").value);
+      const symbolCount = parseInt(document.getElementById("symbols").value);
+      const numberCount = parseInt(document.getElementById("numbers").value);
+
+      let passwordArray = [];
+
+      for (let i = 0; i < letterCount; i++) {
+        passwordArray.push(getRandomItem(letters));
+      }
+
+      for (let i = 0; i < symbolCount; i++) {
+        passwordArray.push(getRandomItem(symbols));
+      }
+
+      for (let i = 0; i < numberCount; i++) {
+        passwordArray.push(getRandomItem(numbers));
+      }
+
+      // Shuffle password characters
+      passwordArray.sort(() => 0.5 - Math.random());
+
+      const finalPassword = passwordArray.join("");
+      document.getElementById("result").innerHTML = `<strong>Your Password:</strong><br>${finalPassword}`;
+    }
+  </script>
+
+</body>
 </html>

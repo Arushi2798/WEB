@@ -1,119 +1,95 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="stylesheet.css">
+    <title>HANGMAN</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #wordDisplay { font-size: 24px; letter-spacing: 8px; }
+        #hangmanFigure { white-space: pre; font-family: monospace; }
+        input { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1 id="intro">Welcome to HANGMAN GAME Folks!!</h1>
+    <p>
+        You seem confident clicking this link. Let's test your knowledge.<br>
+        <ul><li>Guess the word in 6 chances</li></ul>
+        There's only one rule, so don't forget it — or someone will die.<br>
+        <em>That is a threat.</em>
+    </p>
 
-<html>
-    <head >
-        <link type="text/css" rel="stylesheet" href="stylesheet.css">
-        <script type="text/Javascript">
+    <div id="hangmanFigure"></div>
+    <p id="wordDisplay"></p>
+    <p>Guess a letter: <input type="text" id="guessInput" maxlength="1"> <button onclick="makeGuess()">Submit</button></p>
+    <p id="message"></p>
+    <p id="final"></p>
 
-            #Question Statement
-            """Creating a Hangman Game: a guessing game which help identify the letters of a word.
-            the number of chances are only 6 as it needs the hangman figure to be complete."""
+    <script>
+        const words = [
+            "apple", "blanket", "bottle", "towel", "books", "paper", "kettle",
+            "tablet", "mobile", "vinegar", "pillow", "greentea", "mirror", "school", "laptop"
+        ];
 
-            # import time
-            import random
+        let correctWord = words[Math.floor(Math.random() * words.length)].toLowerCase();
+        let blank = Array(correctWord.length).fill("_");
+        let wrongCount = 0;
+        let maxGuesses = 6;
+        let guessedLetters = [];
 
-            words={1: "apple", 2: "blanket", 3: "bottle", 4: "towel", 5: "books", 6: "paper", 7: "kettle", 8: "tablet", 9: "mobile", 10: "vinegar",
-                11:"pillow",12:"greentea",13:"mirror",14:"school", 15: "laptop"}
+        const hangmanStates = [
+            "",
+            " |----\n O   |\n     |\n     |\n     |\n     |\n-------",
+            " |----\n O   |\n/    |\n     |\n     |\n     |\n-------",
+            " |----\n O   |\n/|   |\n     |\n     |\n     |\n-------",
+            " |----\n O   |\n/|\\  |\n     |\n     |\n     |\n-------",
+            " |----\n O   |\n/|\\  |\n/    |\n     |\n     |\n-------",
+            " |----\n O   |\n/|\\  |\n/ \\  |\n     |\n     |\n-------"
+        ];
 
-            #creating blanks spaces for total letter count of any word
-            def word():
-                selected_word=words.get(random.randint(1,len(words)))
-                # print(selected_word)
-                blank="_"*len(selected_word)
-                return blank,selected_word
+        document.getElementById("wordDisplay").textContent = blank.join(" ");
+        document.getElementById("hangmanFigure").textContent = hangmanStates[wrongCount];
 
-            #to draw the hangman figure
-            def hangman(wrong):
-                man=""
-                while wrong<7: 
-                    if wrong==1:
-                        man = " |----\n O   |\n     |\n     |\n     |\n     |\n-------" 
-                        return man
-                    if wrong==2:
-                        man = " |----\n O   |\n/    |\n     |\n     |\n     |\n-------"
-                        return man
-                    if wrong==3:
-                        man = " |----\n O   |\n/|   |\n     |\n     |\n     |\n-------"
-                        return man
-                    if wrong==4:
-                        man = " |----\n O   |\n/|\\  |\n     |\n     |\n     |\n-------"
-                        return man
-                    if wrong==5:
-                        man = " |----\n O   |\n/|\\  |\n/    |\n     |\n     |\n-------"
-                        return man
-                    if wrong==6:
-                        man = " |----\n O   |\n/|\\  |\n/ \\  |\n     |\n     |\n-------"
-                        return man
-                    
-                    # time.sleep(1)
+        function makeGuess() {
+            const input = document.getElementById("guessInput");
+            let guess = input.value.toLowerCase();
+            input.value = "";
+            document.getElementById("message").textContent = "";
 
-            #to fill the blank for correct guess
-            def guesses(blank,guess,wrong_count):
-                if guess in correct_word.lower():
+            if (!guess.match(/[a-z]/) || guess.length !== 1) {
+                document.getElementById("message").textContent = "Please enter a valid single letter.";
+                return;
+            }
 
-                    l=[]
-                    for i in range(len(correct_word)):
-                        if guess== correct_word[i]:
-                            l.append(i)
-                    for j in l:
-                        blank[j]=guess
-                    return blank
-                    
-                else:
-                    wrong_count += 1
-                    print(f"Wrong guess\nyou have {6-wrong_count} guess left")
-                    hangman_img=(hangman(wrong_count))
-                    print(hangman_img)
-                    return wrong_count
+            if (guessedLetters.includes(guess)) {
+                document.getElementById("message").textContent = "You already guessed that letter!";
+                return;
+            }
 
+            guessedLetters.push(guess);
 
-            s_word=word()
-            print(s_word[0])
+            if (correctWord.includes(guess)) {
+                for (let i = 0; i < correctWord.length; i++) {
+                    if (correctWord[i] === guess) {
+                        blank[i] = guess;
+                    }
+                }
+            } else {
+                wrongCount++;
+            }
 
-            correct_word=s_word[1]
-            wrong_count=0
+            document.getElementById("wordDisplay").textContent = blank.join(" ");
+            document.getElementById("hangmanFigure").textContent = hangmanStates[wrongCount];
 
-            print("\n you have 6 guess")
-            guess = input("\n guess a letter: ")
-
-            blank=list(s_word[0])
-
-            while wrong_count < 6:
-                ans=guesses(blank,guess,wrong_count)
-                if ans in [1,2,3,4,5,6]:
-                    wrong_count=ans
-                else:
-                    word=ans
-                    print(ans)
-                    if "_" not in word:
-                        wrong_count=6
-                        print(f"        YOU WON!! \n    Congratulations!!!! ")
-                if wrong_count==6 :
-                    break
-                else:
-                    g=input("\n next guess: ")
-                    guess=g.lower()
-
-            print("         GAME OVER!!")
-        </script>
-        <title>
-            HANGMAN
-        </title>
-    </head>
-    <body>
-        <h1 id="intro">
-            Welcome to HANGMAN GAME Folks!!
-        </h1>
-        <p>
-            you seem confident clicking this link. let&apos;s test your knowldge <br>
-            let&apos;s remember the rules
-            <ul>
-                <li>Guess the word in 6 chances</li></ul>
-            there&apos;s only one rule so don&apos;t forget it, else someone will die.<br>
-            and <em>that is a threat</em>
-        </p>
-        
-
-    </body>
+            if (!blank.includes("_")) {
+                document.getElementById("final").textContent = "🎉 YOU WON!! Congratulations!";
+                document.getElementById("guessInput").disabled = true;
+            } else if (wrongCount >= maxGuesses) {
+                document.getElementById("final").textContent = `💀 GAME OVER! The word was: ${correctWord}`;
+                document.getElementById("guessInput").disabled = true;
+            }
+        }
+    </script>
+</body>
 </html>
