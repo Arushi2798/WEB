@@ -93,7 +93,8 @@ def main():
     if st.session_state.game_over:
         if st.button("🔁 Play Again"):
             start_new_game()
-            st.experimental_rerun()
+            st.rerun()
+
 
 if __name__ == "__main__":
     main()
