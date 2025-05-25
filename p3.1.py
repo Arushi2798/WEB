@@ -60,10 +60,10 @@ def main():
     st.markdown("""
         <style>
             body {
-                background-color: #E6E6FA;
+                background-color: #040404;
             }
             .stApp {
-                background-color: #E6E6FA;
+                background-color: #040404;
             }
         </style>
         """, unsafe_allow_html=True)
