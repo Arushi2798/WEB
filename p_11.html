@@ -1,0 +1,57 @@
+const MAX_DIGITS = 3;
+let playAgain = true;
+
+function getClues(secret, guess) {
+    const res = [];
+    for (let i = 0; i < MAX_DIGITS; i++) {
+        if (guess[i] === secret[i]) {
+            res.push("Fermi");
+        } else if (secret.includes(guess[i])) {
+            res.push("Pico");
+        }
+    }
+    return res.length === 0 ? "BAGELS!!" : res.sort().join(" ");
+}
+
+function generateSecretNumber() {
+    return String(Math.floor(100 + Math.random() * 900));
+}
+
+function playGame() {
+    alert("Bagels, a deductive logic game.\nBy Al Sweigart al@inventwithpython.com\n\nI am thinking of a 3-digit number. Try to guess what it is.\n\nHere are some clues:\nWhen I say:    That means:\nPico          One digit is correct but in the wrong position.\nFermi         One digit is correct and in the right position.\nBagels        No digit is correct.");
+
+    while (playAgain) {
+        const secret = generateSecretNumber();
+        alert("I have thought up a number.\nYou have 10 guesses to get it.");
+        // console.log(secret); // Uncomment for debugging
+
+        for (let i = 1; i <= 10; i++) {
+            let guess = prompt(`Guess #${i}:`);
+            if (!guess || guess.length !== MAX_DIGITS || isNaN(guess)) {
+                alert("Please enter a valid 3-digit number.");
+                i--; // Don’t count this as a valid guess
+                continue;
+            }
+
+            if (guess === secret) {
+                alert("🎉 You got it!");
+                break;
+            } else {
+                alert(getClues(secret, guess));
+            }
+
+            if (i === 10) {
+                alert(`❌ Out of guesses! The number was: ${secret}`);
+            }
+        }
+
+        const response = prompt("Do you want to play again? (yes or no):");
+        if (!response || response.toLowerCase() !== "yes") {
+            playAgain = false;
+            alert("Thanks for playing!");
+        }
+    }
+}
+
+// Start the game
+playGame();
