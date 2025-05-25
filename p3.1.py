@@ -72,7 +72,8 @@ def main():
 
     if 'correct_word' not in st.session_state:
         start_new_game()
-        st.experimental_rerun()
+        st.rerun()
+
 
     # Show hangman drawing
     st.text_area("🪢 Hangman figure:", value=HANGMAN_STATES[st.session_state.wrong_count], height=150)
@@ -86,7 +87,8 @@ def main():
         if st.button("Submit Guess"):
             update_game_state(guess)
             st.session_state["guess_input"] = ""  # Clear input
-            st.experimental_rerun()
+            st.rerun()
+
 
     st.markdown(f"**{st.session_state.message}**")
 
