@@ -1,55 +1,72 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Rock Paper Scissor</title>
+  <link type="text/css" rel="stylesheet" href="stylesheet.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 40px;
+    }
 
-<html>
-    <head >
-        <link type="text/css" rel="stylesheet" href="stylesheet.css">
-        <script type="text/Javascript">
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+    }
 
-            import random
-            var res="y"
-            while res.lower() == "y" :
-            user= int(input("what will you choose? \n 0-> rock\t 1-> paper \t 2->scissor \n"))
-            if user>2:
-                res=input("INVALID INPUT!!!!.\n wanna try  again with correct input values? ")
-                com= random.randint(0,2)
-                if user == com:
-                    res=input("it's a TIE.\n wanna try  again? ")
-                elif com==0:
-                    if user==1:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                    elif user ==2:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
-                elif com==1:
-                    if user==0:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
-                    elif user ==2:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                elif com==2:
-                    if user==0:
-                        res=input("YOU WIN.\n wanna try  again? ")
-                    elif user ==1:
-                        res=input("YOU LOOSE.\n wanna try  again? ")
-        </script>
-        
-        <title>
-            Rock Paper Scissor
-        </title>
-    </head>
-    
-    <body>
-        <h1 id="intro">
-            Welcome to ROCK-PAPER-SCISSOR GAME Folks!!
-        </h1>
-        <p>
-            Frankly we think it&apos;s just a game of luck when you play this with your friend. but on a computer it&apos;s a game of random chance, <em>literaly</em>.
-            so buckle up and let&apos;s test your luck against a computer. 
-        </p>
-        <h3>Rules:</h3>
-        <ol>
-            <li>Rock wins against Scissor,</li>
-            <li>Scissor wins against Paper,</li>
-            <li>Paper wins aginst Rock.</li>
-        </ol>
-    </body>
+    #result {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="intro">Welcome to ROCK-PAPER-SCISSOR GAME Folks!!</h1>
+  <p>
+    Frankly we think it's just a game of luck when you play this with your friend. But on a computer it's a game of random chance, <em>literally</em>.<br>
+    So buckle up and let's test your luck against a computer.
+  </p>
+
+  <h3>Rules:</h3>
+  <ol>
+    <li>Rock wins against Scissor</li>
+    <li>Scissor wins against Paper</li>
+    <li>Paper wins against Rock</li>
+  </ol>
+
+  <h3>Choose your move:</h3>
+  <button onclick="playGame(0)">Rock</button>
+  <button onclick="playGame(1)">Paper</button>
+  <button onclick="playGame(2)">Scissor</button>
+
+  <div id="result"></div>
+
+  <script>
+    function playGame(userChoice) {
+      const choices = ["Rock", "Paper", "Scissor"];
+      const computerChoice = Math.floor(Math.random() * 3);
+
+      let resultText = `You chose: ${choices[userChoice]}<br>Computer chose: ${choices[computerChoice]}<br>`;
+
+      if (userChoice === computerChoice) {
+        resultText += "<strong>It's a TIE!</strong>";
+      } else if (
+        (userChoice === 0 && computerChoice === 2) ||
+        (userChoice === 1 && computerChoice === 0) ||
+        (userChoice === 2 && computerChoice === 1)
+      ) {
+        resultText += "<strong>YOU WIN!</strong>";
+      } else {
+        resultText += "<strong>YOU LOSE!</strong>";
+      }
+
+      document.getElementById("result").innerHTML = resultText;
+    }
+  </script>
+</body>
 </html>
