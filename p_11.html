@@ -1,57 +1,119 @@
-const MAX_DIGITS = 3;
-let playAgain = true;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bagels Game</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: "Courier New", monospace;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #00ffcc;
+    }
+    input, button {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+    .log {
+      white-space: pre-line;
+      background: #222;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
 
-function getClues(secret, guess) {
+<h1>🔢 Bagels: Logic Game</h1>
+<p>Guess the 3-digit number I’m thinking of.</p>
+<p>
+  Clues:<br>
+  🔹 <strong>Fermi</strong>: One digit is correct and in the right place.<br>
+  🔹 <strong>Pico</strong>: One digit is correct but in the wrong place.<br>
+  🔹 <strong>Bagels</strong>: No digit is correct.
+</p>
+
+<input type="text" id="guessInput" maxlength="3" placeholder="Enter 3-digit guess">
+<button onclick="submitGuess()">Submit Guess</button>
+<button onclick="resetGame()">🔁 Restart Game</button>
+
+<div class="log" id="logArea"></div>
+
+<script>
+  const MAX_DIGITS = 3;
+  const MAX_GUESSES = 10;
+  let secret = "";
+  let guessCount = 0;
+  let logArea = document.getElementById("logArea");
+
+  function generateSecretNumber() {
+    return String(Math.floor(100 + Math.random() * 900));
+  }
+
+  function getClues(secret, guess) {
     const res = [];
     for (let i = 0; i < MAX_DIGITS; i++) {
-        if (guess[i] === secret[i]) {
-            res.push("Fermi");
-        } else if (secret.includes(guess[i])) {
-            res.push("Pico");
-        }
+      if (guess[i] === secret[i]) {
+        res.push("Fermi");
+      } else if (secret.includes(guess[i])) {
+        res.push("Pico");
+      }
     }
-    return res.length === 0 ? "BAGELS!!" : res.sort().join(" ");
-}
+    return res.length === 0 ? "Bagels" : res.sort().join(" ");
+  }
 
-function generateSecretNumber() {
-    return String(Math.floor(100 + Math.random() * 900));
-}
+  function submitGuess() {
+    const input = document.getElementById("guessInput");
+    const guess = input.value.trim();
 
-function playGame() {
-    alert("Bagels, a deductive logic game.\nBy Al Sweigart al@inventwithpython.com\n\nI am thinking of a 3-digit number. Try to guess what it is.\n\nHere are some clues:\nWhen I say:    That means:\nPico          One digit is correct but in the wrong position.\nFermi         One digit is correct and in the right position.\nBagels        No digit is correct.");
-
-    while (playAgain) {
-        const secret = generateSecretNumber();
-        alert("I have thought up a number.\nYou have 10 guesses to get it.");
-        // console.log(secret); // Uncomment for debugging
-
-        for (let i = 1; i <= 10; i++) {
-            let guess = prompt(`Guess #${i}:`);
-            if (!guess || guess.length !== MAX_DIGITS || isNaN(guess)) {
-                alert("Please enter a valid 3-digit number.");
-                i--; // Don’t count this as a valid guess
-                continue;
-            }
-
-            if (guess === secret) {
-                alert("🎉 You got it!");
-                break;
-            } else {
-                alert(getClues(secret, guess));
-            }
-
-            if (i === 10) {
-                alert(`❌ Out of guesses! The number was: ${secret}`);
-            }
-        }
-
-        const response = prompt("Do you want to play again? (yes or no):");
-        if (!response || response.toLowerCase() !== "yes") {
-            playAgain = false;
-            alert("Thanks for playing!");
-        }
+    if (guess.length !== 3 || isNaN(guess)) {
+      alert("❗ Please enter a valid 3-digit number.");
+      return;
     }
-}
 
-// Start the game
-playGame();
+    guessCount++;
+    logArea.innerText += `Guess #${guessCount}: ${guess}\n`;
+
+    if (guess === secret) {
+      logArea.innerText += `🎉 You got it! The number was ${secret}.\n`;
+      disableInput();
+    } else {
+      const clue = getClues(secret, guess);
+      logArea.innerText += `Clue: ${clue}\n\n`;
+      if (guessCount >= MAX_GUESSES) {
+        logArea.innerText += `💀 Game Over! The number was ${secret}.\n`;
+        disableInput();
+      }
+    }
+
+    input.value = "";
+    input.focus();
+  }
+
+  function resetGame() {
+    secret = generateSecretNumber();
+    guessCount = 0;
+    logArea.innerText = "🤖 I have thought up a number.\nYou have 10 guesses to get it.\n";
+    document.getElementById("guessInput").disabled = false;
+    document.querySelector("button[onclick='submitGuess()']").disabled = false;
+    document.getElementById("guessInput").focus();
+  }
+
+  function disableInput() {
+    document.getElementById("guessInput").disabled = true;
+    document.querySelector("button[onclick='submitGuess()']").disabled = true;
+  }
+
+  // Start game on load
+  resetGame();
+</script>
+
+</body>
+</html>
